@@ -1,0 +1,32 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Ecommerce",
+    "Store",
+    "Website",
+    "Shop",
+    "Products",
+    "Clothes",
+    "Shoes",
+    "Bags",
+    "Watches"
+  ],
+  "author": "Younis_Rafiq_(Full Stack Developer)",
+  "license": "ISC",
+  "description": "A Complete Full Stack Ecommerce Project including backend APIs , Payment Integration via Stripe and frontend integration via ReactJs Moreever Clean UI and perfect UX design to attract users.",
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.6.1"
+  }
+}
