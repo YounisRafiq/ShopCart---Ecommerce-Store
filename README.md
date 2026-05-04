@@ -1,0 +1,2 @@
+# ShopCart - Ecommerce Store
+A Complete Full Stack Ecommerce Project including backend APIs , Payment Integration via Stripe and frontend integration via ReactJs Moreever Clean UI and perfect UX design to attract users.
