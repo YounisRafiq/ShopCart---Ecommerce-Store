@@ -5,12 +5,16 @@ const productSchema = new mongoose.Schema(
     title: {
       type: String,
       required: true,
-      trim: true,
     },
 
     description: {
       type: String,
       required: true,
+    },
+
+    user : {
+      type : mongoose.Schema.Types.ObjectId,
+      ref : "User"
     },
 
     price: {
@@ -30,9 +34,13 @@ const productSchema = new mongoose.Schema(
     },
 
     category: {
-      type : mongoose.Schema.Types.ObjectId,
-      ref : "Category",
-      required : true
+      type: String,
+      required: true,
+    },
+
+    soldCount : {
+      type : Number,
+      default : 0
     },
 
     images: [
@@ -41,13 +49,8 @@ const productSchema = new mongoose.Schema(
         public_id: String,
       },
     ],
-
-    isFeatured: {
-      type: Boolean,
-      default: false,
-    },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export default mongoose.model("Product", productSchema);
