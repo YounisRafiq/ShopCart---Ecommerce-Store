@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt"
+import bcrypt from "bcrypt";
 
 const userSchema = new mongoose.Schema(
   {
@@ -38,22 +38,11 @@ const userSchema = new mongoose.Schema(
     },
 
     avatar: {
-      url: String,
-      public_id: String,
+      url: { type: String, default: "" },
+      public_id: { type: String, default: "" },
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
-
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
-
-  this.password = await bcrypt.hash(this.password, 12);
-  next();
-});
-
-userSchema.methods.comparePassword = async function (enteredPassword) {
-  return await bcrypt.compare(enteredPassword, this.password);
-};
 
 export default mongoose.model("User", userSchema);

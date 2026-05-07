@@ -2,7 +2,10 @@ import dotenv from "dotenv"
 dotenv.config();
 import app from "./app.js";
 import connetToMongoDb from "./src/db/db.js";
+import { initCloudinary } from "./src/services/service.cloudinary.js";
+
 connetToMongoDb();
+initCloudinary();
 try {
   const PORT = process.env.PORT;
 
