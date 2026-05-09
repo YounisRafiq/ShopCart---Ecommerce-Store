@@ -24,6 +24,7 @@ const orderSchema = new mongoose.Schema(
           required: true,
           min: 0,
         },
+        
       },
     ],
 
