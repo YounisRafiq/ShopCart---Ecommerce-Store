@@ -23,6 +23,11 @@ const categorySchema = new mongoose.Schema(
       default: "",
     },
 
+    user : {
+      type : mongoose.Types.ObjectId,
+      ref : "User"
+    },
+
     image: {
       url: String,
       public_id: String,
