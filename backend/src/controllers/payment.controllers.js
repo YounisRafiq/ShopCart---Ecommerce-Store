@@ -50,12 +50,6 @@ const createPayment = asyncHandler(async (req, res) => {
     .json(new ApiResponse(201, payment, "payment created successfully"));
 });
 
-import paymentModel from "../models/payment.model.js";
-import orderModel from "../models/order.model.js";
-import asyncHandler from "../utils/asyncHandler.js";
-import ApiError from "../utils/ApiError.js";
-import ApiResponse from "../utils/ApiResponse.js";
-
 const verifyPayment = asyncHandler(async (req, res) => {
   const { paymentId, status } = req.body;
 
