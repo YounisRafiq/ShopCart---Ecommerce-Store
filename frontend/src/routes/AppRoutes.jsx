@@ -6,11 +6,11 @@ import Home from "../components/Home/Home";
 const AppRoutes = () => {
   return (
     <Router>
-    <Routes>
-      <Route path="/user/signup" element={<Signup />} />
-      <Route path="/user/login" element={<Login />} />
-      <Route path="/" element={<Home />} />
-    </Routes>
+      <Routes>
+        <Route path="/user/signup" element={<Signup />} />
+        <Route path="/user/login" element={<Login />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
     </Router>
   );
 };

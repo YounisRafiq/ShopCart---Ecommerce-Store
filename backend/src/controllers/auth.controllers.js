@@ -61,20 +61,22 @@ const registerUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
+   console.log("Email: " , email , "password: " , password);
+
   if (!email || !password) {
     throw new ApiError(400, "Email and password are required", [
       "Email and Password are required!!!",
     ]);
   }
 
-  const user = await User.findOne({ email }).select("+password");
+  const user = await User.findOne({ email });
 
   if (!user) {
     res.clearCookie("token");
     throw new ApiError(404, "User not found", ["User Not Found"]);
   }
 
-  const isPasswordValid = await bcrypt.compare(password, user.password);
+  const isPasswordValid = bcrypt.compare(password, user.password);
 
   if (!isPasswordValid) {
     res.clearCookie("token");
