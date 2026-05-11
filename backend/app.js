@@ -8,8 +8,8 @@ import cartRoutes from "./src/routes/cart.routes.js";
 import paymentRoutes from "./src/routes/payment.routes.js";
 import reviewRoutes from "./src/routes/review.routes.js";
 import errorHandler from "./src/middleware/errorHandler.js";
-
 import cors from "cors";
+
 const app = express();
 
 app.use(
