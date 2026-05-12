@@ -8,6 +8,7 @@ import facebookSvg from "../../../assets/facebook.svg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import loadinBar from "../../../assets/loading bar.gif";
+import Swal from "sweetalert2";
 
 import "./Signup.css";
 
@@ -49,6 +50,7 @@ const Signup = () => {
 
     try {
       const formData = new FormData();
+
       formData.append("name", name);
       formData.append("email", email);
       formData.append("password", password);
@@ -60,16 +62,31 @@ const Signup = () => {
         { withCredentials: true },
       );
 
-      console.log(response.data);
+      setLoading(false);
+
+      await Swal.fire({
+        title: "Success",
+        text: response.data?.message || "User Registered Successfully",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 2000,
+      });
 
       navigate("/user/login");
     } catch (error) {
-      console.log(error);
-    } finally {
       setLoading(false);
+
+      setError(error.response?.data?.message || "Something Went Wrong");
+
+      await Swal.fire({
+        title: "Error",
+        text: error.response?.data?.message || "Something Went Wrong",
+        icon: "error",
+        showConfirmButton: true,
+        confirmButtonText: "Try Again",
+      });
     }
   };
-
   return (
     <>
       <div className="signup-wrapper">
@@ -78,6 +95,13 @@ const Signup = () => {
             <div className="form-content">
               <h1>Create an account</h1>
 
+              {setTimeout(() => {
+                {
+                  error && (
+                    <p style={{ color: "red", textAlign: "center" }}>{error}</p>
+                  );
+                }
+              }, 2000)}
               <form method="post" onSubmit={submitForm}>
                 <div className="input-group">
                   <label>Full Name</label>
@@ -137,10 +161,11 @@ const Signup = () => {
                 </div>
 
                 <button
+                  type="submit"
                   disabled={isValidForm || loading}
                   className="signup-btn"
                 >
-                  Sign up
+                  {loading ? "Loading..." : "Sign up"}
                 </button>
               </form>
 
@@ -151,12 +176,12 @@ const Signup = () => {
               </div>
 
               <div className="social-buttons">
-                <button onClick={singInWithGoogle}>
+                <button type="button" onClick={singInWithGoogle}>
                   <img className="google-icon" src={googleSvg} alt="" />
                   <span>Google</span>
                 </button>
 
-                <button onClick={singInWithFacebook}>
+                <button type="button" onClick={singInWithFacebook}>
                   <img className="facebook-icon" src={facebookSvg} alt="" />
                   <span>Facebook</span>
                 </button>
