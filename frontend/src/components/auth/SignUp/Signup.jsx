@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import banner from "../../../assets/download.png";
 import { Link } from "react-router-dom";
