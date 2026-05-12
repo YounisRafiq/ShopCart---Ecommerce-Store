@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import banner from "../../../assets/download.png";
 import { Link } from "react-router-dom";
@@ -87,6 +87,8 @@ const Signup = () => {
       });
     }
   };
+
+
   return (
     <>
       <div className="signup-wrapper">
@@ -94,14 +96,7 @@ const Signup = () => {
           <div className="signup-left">
             <div className="form-content">
               <h1>Create an account</h1>
-
-              {setTimeout(() => {
-                {
-                  error && (
-                    <p style={{ color: "red", textAlign: "center" }}>{error}</p>
-                  );
-                }
-              }, 2000)}
+              
               <form method="post" onSubmit={submitForm}>
                 <div className="input-group">
                   <label>Full Name</label>

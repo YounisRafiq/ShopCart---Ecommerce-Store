@@ -5,6 +5,7 @@ import { FaEyeSlash, FaEye } from "react-icons/fa";
 import loadingBar from "../../../assets/loading bar.gif";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 import "./Login.css";
 
 const Login = () => {
@@ -15,6 +16,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const isValidForm = !email || !password;
 
@@ -27,17 +29,33 @@ const Login = () => {
         "http://localhost:3000/api/v1/auth/user/login",
         {
           email,
-          password
+          password,
         },
         { withCredentials: true },
       );
 
-      console.log(response.data);
+      setLoading(false);
+      Swal.fire({
+        icon: "success",
+        title: "LoggedIn",
+        text: response?.data?.message || "User Registered SuccessFully",
+        showConfirmButton: false,
+        timer: 2000,
+      });
       navigate("/");
     } catch (error) {
       console.log(error);
-    } finally {
       setLoading(false);
+      const errorMessage = setError(
+        error.response.data?.message || "Something Went Wrong",
+      );
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: errorMessage,
+        showConfirmButton: true,
+        confirmButtonText: "try Again",
+      });
     }
   };
 
