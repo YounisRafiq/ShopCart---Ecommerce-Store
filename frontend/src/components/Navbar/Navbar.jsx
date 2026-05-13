@@ -19,17 +19,16 @@ const Navbar = () => {
 
           <li>Shop</li>
 
-          
-            <li className="category-item">
-              Categories
-              <i className="ri-arrow-drop-down-line"></i>
-              <ul className="dropdown-menu">
-                <li>Men</li>
-                <li>Women</li>
-                <li>Electronics</li>
-                <li>Shoes</li>
-              </ul>
-            </li>
+          <li className="category-item">
+            Categories
+            <i className="ri-arrow-drop-down-line"></i>
+            <ul className="dropdown-menu">
+              <li>Men</li>
+              <li>Women</li>
+              <li>Electronics</li>
+              <li>Shoes</li>
+            </ul>
+          </li>
 
           <li>About</li>
         </ul>
@@ -42,6 +41,7 @@ const Navbar = () => {
 
           <div className="profile">
             <i className="ri-user-line"></i>
+            <p>Profile</p>
           </div>
         </div>
       </div>
@@ -83,13 +83,11 @@ const Navbar = () => {
         ></i>
       </div>
 
-      {/* DESKTOP ICONS */}
       <div className="whish-list">
         <i className="ri-heart-line"></i>
         <i className="ri-shopping-cart-line"></i>
       </div>
 
-      {/* PROFILE */}
       <div className="profile">
         <i className="ri-user-line"></i>
         <p>Profile</p>

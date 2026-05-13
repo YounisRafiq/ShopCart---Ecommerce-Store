@@ -279,6 +279,7 @@
     justify-content: flex-start; /* 👈 IMPORTANT FIX */
   }
 
+
   .show-sidebar {
     left: 0;
   }
@@ -317,10 +318,47 @@
     width: 100%;
   }
   .sidebar .profile {
-    display: block;
+    display: flex;
     position: absolute;
+    align-items: center;
     left: 13px;
-    top: 90%;
+    top: 92%;
+  }
+}
+
+/* 993px se upar sab devices ke liye */
+@media (min-width: 993px) and (max-width : 1279px) {
+  
+  .search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .search-bar .ri-search-line {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+
+  .search-bar input {
+    width: 0;
+    opacity: 0;
+    padding: 0;
+    transition: all 0.3s ease;
+  }
+
+  .search-bar.active input {
+    width: 220px;
+    opacity: 1;
+    padding: 10px 40px 10px 15px;
+  }
+
+  .search-bar.active .ri-search-line {
+    right: 15px;
   }
 }
 
