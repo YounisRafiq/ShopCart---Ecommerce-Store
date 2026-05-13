@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
-
+import user from "../../assets/user.svg"
 const Navbar = () => {
   const [openSearch, setOpenSearch] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
@@ -89,7 +89,7 @@ const Navbar = () => {
       </div>
 
       <div className="profile">
-        <i className="ri-user-line"></i>
+        <img src={user} alt="" srcset="" />
         <p>Profile</p>
       </div>
     </div>
