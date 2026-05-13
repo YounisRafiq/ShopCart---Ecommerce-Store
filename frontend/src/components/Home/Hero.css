@@ -1,0 +1,40 @@
+.hero-swiper {
+  width: 100%;
+  height: 70vh;
+}
+
+.slide {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  color: white;
+}
+
+.content h2 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.content button {
+  padding: 10px 20px;
+  border: none;
+  background: black;
+  color: white;
+  cursor: pointer;
+}
+
+

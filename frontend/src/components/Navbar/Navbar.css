@@ -91,6 +91,7 @@
   visibility: hidden;
   transform: translateY(10px);
   transition: 0.3s;
+  z-index: 999;
 }
 
 .dropdown-menu li {
@@ -152,7 +153,7 @@
 }
 
 .search-bar.active .ri-search-line {
-  right: 365px;
+  right: 340px;
   transition: all 0.3s ease;
 }
 

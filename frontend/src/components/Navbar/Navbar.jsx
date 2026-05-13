@@ -58,7 +58,7 @@ const Navbar = () => {
       <ul className="links">
         <li>Home</li>
 
-        <li>Shop</li>
+        <li>Dashboard</li>
 
         <li className="category-item">
           Categories
