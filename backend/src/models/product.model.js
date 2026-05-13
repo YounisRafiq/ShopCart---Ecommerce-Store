@@ -38,6 +38,11 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
 
+    isFeatured : {
+      type : Boolean,
+      default : false
+    },
+
     soldCount : {
       type : Number,
       default : 0

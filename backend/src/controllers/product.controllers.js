@@ -8,7 +8,7 @@ import {
 } from "../services/service.cloudinary.js";
 
 const createProduct = asyncHandler(async (req, res) => {
-  const { title, description, price, discountPrice, stock, category } =
+  const { title, description, price, discountPrice, stock, category , isFeatured } =
     req.body;
 
   if (!title || !description || !price || !category) {
@@ -63,6 +63,7 @@ const createProduct = asyncHandler(async (req, res) => {
     stock: stock,
     discountPrice: discountPrice,
     category: category,
+    isFeatured : isFeatured,
     images: uploadedImages,
   });
 
