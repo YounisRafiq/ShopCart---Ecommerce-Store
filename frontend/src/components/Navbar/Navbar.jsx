@@ -1,13 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
-import user from "../../assets/user.svg"
+import user from "../../assets/user.svg";
 const Navbar = () => {
   const [openSearch, setOpenSearch] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
+  const [showNavbar , setShowNavbar] = useState(true);
+
+  const lastScrollY = useRef(0);
+
+   useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      const scrollDifference =
+        Math.abs(currentScrollY - lastScrollY.current);
+
+      if (scrollDifference < 20) return;
+
+      if (
+        currentScrollY > lastScrollY.current &&
+        currentScrollY > 100
+      ) {
+        setShowNavbar(false);
+      }
+
+      else {
+        setShowNavbar(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () =>
+      window.removeEventListener("scroll", handleScroll);
+  }, []);
+ 
 
   return (
-    <div className="nav-bar">
+    <div className={showNavbar ? "nav-bar" : "nav-bar hide"}>
       <div className={`sidebar ${openSidebar ? "show-sidebar" : ""}`}>
         <i
           onClick={() => setOpenSidebar(false)}
@@ -89,8 +122,7 @@ const Navbar = () => {
       </div>
 
       <div className="profile">
-        <img src={user} alt="" srcset="" />
-        <p>Profile</p>
+        <img src={user} alt="" />
       </div>
     </div>
   );

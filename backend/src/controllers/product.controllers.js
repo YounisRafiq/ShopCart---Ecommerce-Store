@@ -195,28 +195,32 @@ const deleteProduct = asyncHandler(async (req, res) => {
 
 const getAllProducts = asyncHandler(async (req, res) => {
   const {
-    page = 1,
+    page,
     limit = 20,
     sortBy = "createdAt",
     order = "desc",
+    category,
   } = req.query;
 
-  const skip = (page - 1) * limit;
+  let filter = {};
+
+  if (category) {
+    filter.category = { $regex: category, $options: "i" };
+  }
 
   const sortOrder = {};
   sortOrder[sortBy] = order === "asc" ? 1 : -1;
 
-  const products = await productModel
-    .find()
-    .sort(sortOrder)
-    .skip(skip)
-    .limit(Number(limit));
+  let query = productModel.find(filter).sort(sortOrder);
 
-  const totalProducts = await productModel.countDocuments();
-
-  if (!products || products.length === 0) {
-    throw new ApiError(404, "No products found", ["No products found"]);
+  // 🔥 pagination only when page exists
+  if (page) {
+    const skip = (Number(page) - 1) * Number(limit);
+    query = query.skip(skip).limit(Number(limit));
   }
+
+  const products = await query;
+  const totalProducts = await productModel.countDocuments(filter);
 
   return res.status(200).json(
     new ApiResponse(
@@ -224,8 +228,8 @@ const getAllProducts = asyncHandler(async (req, res) => {
       {
         products,
         totalProducts,
-        currentPage: Number(page),
-        totalPages: Math.ceil(totalProducts / limit),
+        currentPage: page ? Number(page) : null,
+        totalPages: page ? Math.ceil(totalProducts / limit) : 1,
       },
       "Products fetched successfully"
     )
